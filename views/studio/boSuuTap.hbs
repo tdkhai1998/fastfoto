@@ -1,0 +1,113 @@
+<div id="myModal1" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-body">
+				<form action="/bosuutap" method="POST" enctype="multipart/form-data">
+					<input name="id" id="id" type="text" value="{{info.id}}" hidden="true">
+					<input name="oldimg" id="oldimg" type="text" value="" hidden="true">
+					<img style="max-width:466px; margin-bottom:10px" id="myimage" src="" alt="">
+					<input name="anhmau" class="binputgoi" type="file" required onchange="onFileSelected(event)"><br>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="submit">Gửi</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+</div>
+<div id="colorlib-page">
+	<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+	<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+		<h1 id="colorlib-logo"><a href="{{#if ch}}/trangchustudio{{else}}/xemstudio?id={{info.id}} {{/if}}"><span
+					class="img" style="background-image: url({{info.anhDaiDien}});"></span>{{info.tenStudio}}</a></h1>
+		<nav id="colorlib-main-menu" role="navigation">
+			<ul>
+				<li><a href="/">Trang chủ</a></li>
+				<li><a href="{{#if ch}}/trangchustudio{{else}}/xemstudio?id={{info.id}} {{/if}}">MyStudio</a></li>
+				<li><a href="{{#if ch}}/goichup{{else}}/xemgoichup?id={{info.id}}{{/if}}">Các gói chụp ảnh</a></li>
+				<li class="colorlib-active"><a href="{{#if ch}}/bosuutap{{else}}/xembosuutap?id={{info.id}}{{/if}}">Bộ
+						sưu
+						tập</a></li>
+				{{#if ch}}
+				<li><a href="/danhsachdonchup">Danh sách đơn đặt chụp</a></li>
+				<li><a href="/dangxuat">Đăng xuất</a></li>
+				{{/if}}
+
+			</ul>
+		</nav>
+
+
+	</aside> <!-- END COLORLIB-ASIDE -->
+	<div id="colorlib-main">
+		<section class="ftco-section ftco-bread">
+			<div class="container">
+				<div class="row no-gutters slider-text justify-content-center align-items-center">
+					<div class="col-md-8 ftco-animate">
+						<p class="breadcrumbs"><span class="mr-2"><a
+									href="{{#if ch}}trangchustudio{{else}}/{{/if}}">Trang chủ</a></span>
+							<span>Bộ sưu tập</span></p>
+						<h1 class="bread">Bộ sưu tập</h1>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="ftco-section-3">
+			<div class="photograhy">
+				<div class="row">
+					{{#each this.row}}
+					<div class="col-md-4 ftco-animate">
+						{{#if ch}}
+						<div {{else}}<a href="{{img}}" {{/if}}
+							class="photography-entry img {{#unless ch}}image-popup {{/unless}} d-flex justify-content-start align-items-end"
+							style="background-image: url({{img}});">
+							<div class="overlay">
+
+							</div>
+							{{#if ch}}
+
+							<div class="text ml-4 mb-4">
+								<button id="thietlap" type="button" class="thietlap btn btn-primary" data-toggle="modal"
+									data-target="#myModal1" value="{{img}}">Thiết lập</button>
+							</div>
+							{{/if}}
+
+
+
+							{{#if ch}}
+						</div>
+						{{else}}
+						</a>
+						{{/if}}
+					</div>
+					{{/each}}
+				</div>
+			</div>
+		</section>
+		<footer class="ftco-footer ftco-bg-dark ftco-section">
+			<div class="container px-md-5">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						<p>
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> All rights reserved | Fastfoto is
+							made <i class="icon-heart" aria-hidden="true"></i> by <a href="" target="_blank">HK</a>
+						</p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div><!-- END COLORLIB-MAIN -->
+</div><!-- END COLORLIB-PAGE -->
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+		<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+			stroke="#F96D00" /></svg></div>

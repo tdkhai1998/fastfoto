@@ -1,0 +1,241 @@
+{{#if ch}}
+<div id="myModal1" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-body">
+				<form action="/goichup" method="POST" enctype="multipart/form-data">
+
+					<label for="">Tên gói</label>
+					<input name="tengoi" class="inputgoi" type="text" required><br>
+					<label for="">Ảnh gói</label>
+					<img style="max-width:466px; max-heigth: 150px; margin-bottom:10px" id="myimage" src="" alt="">
+					<input name="anhdaidien" class="inputgoi" type="file" required onchange="onFileSelected(event)"><br>
+					<label for="">Giá</label>
+					<input name="gia" class="inputgoi" type="number" required><br>
+					<label for="">Địa điểm</label>
+					<input name="diadiem" class="inputgoi" type="text" required><br>
+					<label class="inputgoi" for="">Sổ lượng ảnh</label>
+					<input name="soluong" class="inputgoi" type="number" required><br>
+					<label for="">Thông tin thêm</label>
+					<input name="thongtinthem" class="inputgoi" type="text" required>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="submit">Gửi</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="myModal2" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-body">
+				<form action="/goichup/capnhat" method="POST" enctype="multipart/form-data">
+					<input id="magoi" name="magoi" hidden="true" required>
+					<label for="">Tên gói</label>
+					<input id="tengoi" name="tengoi" class="inputgoi" type="text" required><br>
+					<label for="">Ảnh gói</label>
+					<img style="max-width:466px; max-heigth: 150px; margin-bottom:10px" id="myimage2" src="" alt="">
+					<input name="anhdaidien" class="inputgoi" type="file" onchange="onFileSelected(event)"><br>
+					<label for="">Giá</label>
+					<input id="gia" name="gia" class="inputgoi" type="number" required><br>
+					<label for="">Địa điểm</label>
+					<input id="diadiem" name="diadiem" class="inputgoi" type="text" required><br>
+					<label class="inputgoi" for="">Sổ lượng ảnh</label>
+					<input id="soluong" name="soluong" class="inputgoi" type="number" required><br>
+					<label for="">Thông tin thêm</label>
+					<input id="thongtinthem" name="thongtinthem" class="inputgoi" type="text" required>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="submit">Cập nhật</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+{{else}}
+<div id="myModal3" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-body">
+				<form action="/xemgoichup" method="POST">
+					<input id="magoianh" type="text" name="goichup" value="" hidden="true">
+					<label for="">Thông tin thêm</label>
+					<textarea name="thongtinthem" class="inputgoi" type="text"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="submit">Đặt</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+{{/if}}
+<div id="colorlib-page">
+	<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+	<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+		<h1 id="colorlib-logo"><a href="{{#if ch}}/trangchustudio{{else}}/xemstudio?id={{info.id}} {{/if}}"><span
+					class="img" style="background-image: url({{info.anhDaiDien}});"></span>{{info.tenStudio}}</a></h1>
+		<nav id="colorlib-main-menu" role="navigation">
+			<ul>
+				<li><a href="/">Trang chủ</a></li>
+				{{#if ch}}
+				<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal1">Thêm
+					gói chụp</button><br><br>
+				{{/if}}
+				<li><a href="{{#if ch}}/trangchustudio{{else}}/xemstudio?id={{info.id}} {{/if}}">MyStudio</a></li>
+				<li class="colorlib-active"><a href="{{#if ch}}/goichup{{else}}/xemgoichup?id={{info.id}}{{/if}}">Các
+						gói
+						chụp ảnh</a></li>
+				<li><a href="{{#if ch}}/bosuutap{{else}}/xembosuutap?id={{info.id}}{{/if}}">Bộ sưu tập</a></li>
+				{{#if ch}}
+				<li><a href="/danhsachdonchup">Danh sách đơn đặt chụp</a></li>
+				<li><a href="/dangxuat">Đăng xuất</a></li>
+				{{/if}}
+
+
+			</ul>
+		</nav>
+
+	</aside> <!-- END COLORLIB-ASIDE -->
+	<div id="colorlib-main">
+		<section class="ftco-section ftco-bread">
+			<div class="container">
+				<div class="row no-gutters slider-text justify-content-center align-items-center">
+					<div class="col-md-8 ftco-animate">
+						<p class="breadcrumbs"><span class="mr-2"><a
+									href="{{#if ch}}/trangchustudio{{else}}/{{/if}}">Trang
+									chủ</a></span>
+							<span>Gói
+								chụp</span></p>
+						<h1 class="bread">Danh sách gói chụp</h1>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row d-flex">
+					<div class="col-lg-8">
+						<div class="row">
+							{{#each this.row}}
+							<div class="col-md-12">
+								<div class="blog-entry ftco-animate d-md-flex">
+									<a href="" class="img img-2"
+										style="border-radius: 20px; background-image: url({{anhdaidien}});"></a>
+									<div class="text text-2 p-4">
+										<p class="meta">
+											<h2 style="font-family: """>{{tengoi}} </h2>
+										</p>
+										<h3 class="mb-2"><a href="">{{gia}} VNĐ</a></h3>
+										<div class="meta-wrap">
+
+										</div>
+										<p>Địa điểm: {{diadiem}}</p>
+										<p>Số lượng ảnh: {{soluonganh}}</p>
+										<p>Thông tin thêm: {{thongtinthem}}</p>
+										{{#if ch}}
+										<br>
+										<button type="button" class="capnhatgoianh btn btn-success tuchoi"
+											data-toggle="modal" data-target="#myModal2"
+											value="{{magoi}},{{anhdaidien}},{{tengoi}},{{gia}},{{diadiem}},{{soluonganh}},{{thongtinthem}}">Cập
+											nhật</b></button>
+										<a class="btn btn-danger" href="/goichup/xoa?magoi={{magoi}}"><b
+												style="color: white;">Xóa</b></a>
+										{{else}}
+
+										<br>
+										<button type="button" class="datlich btn btn-success tuchoi" data-toggle="modal"
+											data-target="#myModal3" value="{{magoi}}">Đặt lịch</b></button>
+
+										{{/if}}
+
+
+									</div>
+								</div>
+							</div>
+							{{/each}}
+
+
+						</div><!-- END-->
+						{{!-- <div class="row">
+							<div class="col">
+								<div class="block-27">
+									<ul>
+										<li><a href="#">&lt;</a></li>
+										<li class="active"><span>1</span></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&gt;</a></li>
+									</ul>
+								</div>
+							</div>
+						</div> --}}
+					</div>
+					<div class="col-lg-4 sidebar ftco-animate bg-light">
+
+
+						<!--         <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Tag Cloud</h3>
+	              <ul class="tagcloud">
+	                <a href="#" class="tag-cloud-link">animals</a>
+	                <a href="#" class="tag-cloud-link">human</a>
+	                <a href="#" class="tag-cloud-link">people</a>
+	                <a href="#" class="tag-cloud-link">cat</a>
+	                <a href="#" class="tag-cloud-link">dog</a>
+	                <a href="#" class="tag-cloud-link">nature</a>
+	                <a href="#" class="tag-cloud-link">leaves</a>
+	                <a href="#" class="tag-cloud-link">food</a>
+	              </ul>
+	            </div> -->
+
+
+
+						<!--         <div class="sidebar-box ftco-animate">
+	            	<h3 class="sidebar-heading">Archives</h3>
+	              <ul class="categories">
+	              	<li><a href="#">Decob14 2018 <span>(10)</span></a></li>
+	                <li><a href="#">September 2018 <span>(6)</span></a></li>
+	                <li><a href="#">August 2018 <span>(8)</span></a></li>
+	                <li><a href="#">July 2018 <span>(2)</span></a></li>
+	                <li><a href="#">June 2018 <span>(7)</span></a></li>
+	                <li><a href="#">May 2018 <span>(5)</span></a></li>
+	              </ul>
+	            </div> -->
+
+
+						{{>quangcao}}
+					</div><!-- END COL -->
+				</div>
+			</div>
+		</section>
+		<footer class="ftco-footer ftco-bg-dark ftco-section">
+			<div class="container px-md-5">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						<p>
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> All rights reserved | Fastfoto is
+							made <i class="icon-heart" aria-hidden="true"></i> by <a href="" target="_blank">HK</a>
+						</p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div><!-- END COLORLIB-MAIN -->
+</div><!-- END COLORLIB-PAGE -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+		<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+			stroke="#F96D00" /></svg></div>

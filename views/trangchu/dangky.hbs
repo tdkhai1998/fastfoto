@@ -1,0 +1,392 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+<style >
+  .register{
+    background: -webkit-linear-gradient(left, #0080a0, #fff);
+    margin-top: 3%;
+    padding: 3%;
+    -webkit-box-shadow: -9px 14px 72px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -9px 14px 72px 0px rgba(0,0,0,0.75);
+    box-shadow: -9px 14px 72px 0px rgba(0,0,0,0.75);
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.register-left img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+.register .register-form{
+    padding: 10%;
+    margin-top: 10%;
+}
+.btnRegister{
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #0080a0;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.register .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #0080a0;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.register .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+ 
+    color: #000;
+    border: 2px solid #495057;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+
+}
+</style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+  jQuery.validator.addMethod("integer", function(value, element) {
+	return this.optional(element) || /^-?\d+$/.test(value);
+}, "A positive or negative non-decimal number please");
+  $(function () {
+    $('#ngaysinh').datetimepicker({
+      format: 'd/m/Y',
+      timepicker: false,
+      mask: true,
+    });
+
+    $('#dangKyUser').validate({
+      rules: {
+        
+        username: {
+          required: true,
+          remote:'/account/is-available'
+        },
+        passwordU: {
+          required: true,
+          minlength: 6
+        },
+        confirm: {
+          required: true,
+          equalTo: $('[name="passwordU"]')
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        hoten: {
+          required: true,
+        },
+        ngaysinh: {
+          required: true,
+        },
+        sdt: {
+          required:true,
+          integer:true,
+          minlength:10,
+          maxlength:11
+        },
+        facebook:{
+          required: true
+        }
+      },
+      messages: {
+        username: {
+          required: 'Username không được bỏ trống.',
+          remote:'username đã tồn tại'
+        },
+        passwordU: {
+          required: 'Password không được bỏ trống.',
+          minlength: 'Password phải có ít nhất 6 kí tự.'
+        },
+        confirm: {
+          required: 'Password không khớp.',
+          equalTo: 'Password không khớp.'
+        },
+        email: {
+          required: 'Email không hợp lệ.',
+          email: 'Email không hợp lệ.'
+        },
+        hoten: {
+          required: 'Tên của bạn là gì?',
+        },
+        ngaysinh: {
+          required: 'Ngày sinh không hợp lệ.'
+        },
+        sdt:{
+          required:'Không được bỏ trống.'
+        }, 
+        facebook:{
+          required: 'Không được bỏ trống.'
+        }
+      },
+      errorElement: 'small',
+      errorClass: 'help-block text-danger',
+      highlight: function (e) {
+        $(e).removeClass('is-valid').addClass('is-invalid');
+      },
+      unhighlight: function (e) {
+        $(e).removeClass('is-invalid').addClass('is-valid');
+      }
+    });
+    $('#dangkyStudio').validate({
+       rules: {
+         image:{
+          required:true
+        },
+        username: {
+          required: true,
+          remote:'/account/is-available'
+        },
+        passwordS: {
+          required: true,
+          minlength: 6
+        },
+        confirm: {
+          required: true,
+          equalTo: $('[name="passwordS"]')
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        tenStudio: {
+          required: true
+        },
+        diachi:{
+          required: true
+        },
+        sdt: {
+          integer:true,
+          minlength:10,
+          maxlength:11
+        },
+        facebook:{
+          required: true
+        }
+      },
+      messages: {
+       username: {
+          required: 'Username không được bỏ trống.',
+          remote:'username đã tồn tại'
+        },
+        passwordS: {
+          required: 'Password không được bỏ trống.',
+          minlength: 'Password phải có ít nhất 6 kí tự.'
+        },
+        confirm: {
+          required: 'Password không khớp.',
+          equalTo: 'Password không khớp.'
+        },
+        email: {
+          required: 'Email không hợp lệ.',
+          email: 'Email không hợp lệ.'
+        },
+        tenStudio: {
+          required: 'Tên Studio của bạn là gì?',
+        },
+        diachi: {
+          required: 'Studio của bạn nằm ở đâu?'
+        },
+        sdt:{
+          required:'Không được bỏ trống.'
+        }, 
+        facebook:{
+          required:'Không được bỏ trống.'
+        }
+      },
+      errorElement: 'small',
+      errorClass: 'help-block text-danger',
+      highlight: function (e) {
+        $(e).removeClass('is-valid').addClass('is-invalid');
+      },
+      unhighlight: function (e) {
+        $(e).removeClass('is-invalid').addClass('is-valid');
+      }
+    });
+  })
+</script> 
+{{/section}}
+<script type="text/javascript">
+  function onFileSelected(event) {
+  var selectedFile = event.target.files[0];
+  var reader = new FileReader();
+
+  var imgtag = document.getElementById("myimage");
+  imgtag.title = selectedFile.name;
+
+  reader.onload = function(event) {
+    imgtag.src = event.target.result;
+  };
+
+  reader.readAsDataURL(selectedFile);
+}
+</script>
+ <div class="apartment_part">
+    <div class="container register">
+      <div class="row">
+          <div class="col-md-3 register-left">
+              <h3>Xin chào</h3>
+         
+              <input type="submit" name="" value="Đăng nhập"/><br/>
+          </div>
+          <div class="col-md-9 register-right">
+              <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                  <li class="nav-item">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Khách</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Studio</a>
+                  </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <h3 class="register-heading">Dành cho người dùng</h3>
+ {{!-- Form  User--}} <form action="" id="dangKyUser" method="POST"> 
+                        <input type="hidden" name="loai" value="U">
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="username" id="username" type="text" class="form-control" placeholder="Username *" value="" />
+                                </div>
+                                 <div class="form-group">
+                                    <input name="passwordU" id="passwordU" type="password" class="form-control" placeholder="Password *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="confirm" id="confirm" type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="email" id="email" type="text" class="form-control" placeholder="Email *" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="hoten" id="hoten" type="text" class="form-control" placeholder="Họ tên *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="sdt" id="sdt" type="text"  class="form-control" placeholder="Số điện thoại *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="ngaysinh" id="ngaysinh" type="text" class="form-control" placeholder="Ngày sinh" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="facebook" id="facebook" type="text"  class="form-control" placeholder="Facebook *" value="" />
+                                </div>
+                                <input type="submit" class="btnRegister"  value="Đăng ký"/>
+                            </div>
+                        </div>
+                      </form>
+                  </div>
+                  <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <h3  class="register-heading">Dành cho Studio</h3>
+ {{!-- Form Studio --}} <form action="" id="dangkyStudio" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="loai" value="S">
+                        <div class="row register-form">
+                          <div class="col-md-12">
+                            <img id="myimage" style="margin-bottom:20px;" >
+                          </div>
+                           <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="file"  accept="image/*" name="image" id="image" style="width: 100%;" onchange="onFileSelected(event)"/>
+                                </div>
+                                <div class="form-group">
+                                    <input name="username" id="username" type="text" class="form-control" placeholder="Username *" value="" />
+                                </div>
+                                 <div class="form-group">
+                                    <input name="passwordS" id="passwordS" type="password" class="form-control" placeholder="Password *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="confirm" id="confirm" type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="email" id="email" type="text" class="form-control" placeholder="Email *" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="tenStudio" id="tenStudio" type="text" class="form-control" placeholder="Tên Studio *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="diachi" id="diachi" type="text" class="form-control" placeholder="Địa chỉ *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="sdt" id="sdt" type="text" class="form-control" placeholder="`Số điện thoại *" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input name="facebook" id="facebook" type="text" class="form-control" placeholder="facebook" value="" />
+                                </div>
+                                <input type="submit" class="btnRegister"  value="Đăng ký">
+                            </div>
+                        </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+

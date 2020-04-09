@@ -1,0 +1,69 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/search.css"> {{#if message}}
+<script>
+    (function() {
+        alert('{{message}}');
+    })();
+</script>
+
+{{/if}} {{/section}}
+
+<div class="apartment_part">
+    <div class="container">
+        <div class="row justify-content-between align-content-center">
+            <div class="col-md-8 col-lg-7">
+                <div class="section_tittle">
+                    <h1>QUẢN LÍ STUDIO<br>
+                        <b>Admin</b></h1>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-5">
+                <form class="form-inline active-cyan-4" method="POST">
+                    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" name="key" aria-label="Search">
+                    <button type="submit" class="btn form-control-sm" value=""><i class="fas fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="section-top-border">
+            <h3 class="mb-30">DANH SÁCH STUDIO</h3>
+            {{#if timkiem}}
+            <h4>Tìm kiếm <b>"{{timkiem}}"</b></h4>
+            <a type="button" class="btn" href="/quanlistudio">Quay lại</a> {{/if}}
+            <div class="">
+
+                {{!-- progress-table-wrap --}}
+                <div class="progress-table" style="padding: 15px">
+                    <div class="table-head">
+                        <div class="country">#AVT</div>
+                        <div class="country">#ID</div>
+                        <div class="country">USERNAME</div>
+                        <div class="country">TÊN STUDIO</div>
+                        <div class="percentage">EMAIL</div>
+                        <div class="visit">BLOCK</div>
+                        <div class="visit">UNBLOCK</div>
+                    </div>
+                    {{#each acc}}
+
+                    <div class="table-row">
+                        <div class="country">
+                            <a href="/xemstudio?id={{id}}"><img src="{{anhDaiDien}}" alt="" style=" border-radius: 50%; width:100px;height:100px;object-fit: cover;"></a>
+                        </div>
+                        <div class="country">{{id}}</div>
+                        <div class="country"> {{username}}</div>
+                        <div class="country"> {{tenStudio}}</div>
+                        <div class="percentage">{{email}}</div>
+                        <div class="visit">
+                            {{#if tinhtrang}}
+                            <a href="quanlistudio/block?id={{id}}" class="genric-btn danger">BLOCK</a> {{else}} {{!-- <a style="background-color: gray" class="genric-btn danger">BLOCK</a> --}} {{/if}}
+                        </div>
+                        <div class="visit">
+                            {{#if tinhtrang}} {{!-- <a style="background-color: gray" class="genric-btn success">UNBLOCK</a> --}} {{else}}
+                            <a href="quanlistudio/unblock?id={{id}}" class="genric-btn success">UNBLOCK</a> {{/if}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

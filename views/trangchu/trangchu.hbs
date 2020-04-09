@@ -1,0 +1,123 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/search.css"> {{#if message}}
+<script>
+    (function () {
+        alert('{{message}}');
+    })();
+</script>
+
+{{/if}} {{/section}} {{#if candangnhap}} {{#section 'js'}}
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#myModal').modal('show');
+    });
+</script>
+{{/section}} {{/if}}
+
+<div class="apartment_part">
+    <div class="container">
+        <div class="row justify-content-between align-content-center">
+            <div class="col-md-8 col-lg-7">
+                <div class="section_tittle">
+                    <h1> Danh sách các<br>
+                        <b>Studio</b></h1>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-4">
+                <div class="container h-100">
+                    <div class="d-flex justify-content-center h-100">
+                        <form action="/timkiem" method="POST">
+                            <div class="searchbar">
+                                <input class="search_input" type="text" name="key" placeholder="Search...">
+                                <button type='submit' class="search_icon"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{#each this.rows}} {{!----}}
+            <div class="col-md-4 col-lg-4 card-studio">
+                <div class="single_appartment_part">
+                    <div class="appartment_img">
+                        <img src="{{anhDaiDien}}" style="width: 350px; height: 350px; object-fit: cover;">
+                        <div class="single_appartment_text">
+                            <p><span class="ti-location-pin"></span>{{diachi}}</p>
+                        </div>
+                    </div>
+                    <div class="single_appartment_content">
+                        <a href="" class="love_us"> <span class="ti-heart"></span><span class="ti-heart"></span> </a>
+                        <p>{{phongcach}}</p>
+                        <a href="/xemstudio?id={{id}}">
+                            <h4>{{tenStudio}}</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}} {{#each studios}} {{!----}}
+            <div class="col-md-4 col-lg-4 card-studio">
+                <div class="single_appartment_part">
+                    <div class="appartment_img">
+                        <img src="{{anhDaiDien}}" style="width: 350px; height: 350px; object-fit: cover;">
+                        <div class="single_appartment_text">
+                            <p><span class="ti-location-pin"></span>{{diachi}}</p>
+                        </div>
+                    </div>
+                    <div class="single_appartment_content">
+                        <a href="" class="love_us"> <span class="ti-heart"></span><span class="ti-heart"></span> </a>
+                        <p>{{phongcach}}</p>
+                        <a href="/xemstudio?id={{id}}">
+                            <h4>{{tenStudio}}</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <nav class="blog-pagination justify-content-center d-flex">
+            <ul class="pagination">
+                {{#if pre.active}}
+                <li class="page-item">
+                    <a href="/?page={{pre.id}}" class="page-link" aria-label="Previous">
+                        <i class="ti-angle-left"></i>
+                    </a>
+                </li>
+                {{else}}
+                <li class="page-item">
+                    <a style="background-color: gray" class="page-link" aria-label="Previous" aria-disabled="true">
+                        <i class="ti-angle-left"></i>
+                    </a>
+                </li>
+                {{/if}} {{#each pages}} {{#if active}}
+                <li class="page-item active">
+                    <a href="/?page={{id}}" class="page-link">{{id}}</a>
+                </li>
+                {{else}}
+                <li class="page-item ">
+                    <a href="/?page={{id}}" class="page-link">{{id}}</a>
+                </li>
+                {{/if}} {{/each}} {{#if nxt.active}}
+                <li class="page-item">
+                    <a href="/?page={{nxt.id}}" class="page-link" aria-label="Next">
+                        <i class="ti-angle-right"></i>
+                    </a>
+                </li>
+                {{else}}
+                <li class="page-item">
+                    <a style="background-color: gray" class="page-link" aria-label="Next" aria-disabled="true">
+                        <i class="ti-angle-right"></i>
+                    </a>
+                </li>
+                {{/if}}
+            </ul>
+        </nav>
+    </div>
+</div>
+{{#section 'css'}} {{#if message}}
+<script>
+    (function () {
+        alert('{{message}}');
+    })();
+</script>
+{{/if}} {{/section}}

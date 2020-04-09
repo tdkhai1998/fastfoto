@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Studio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
+
+    <link rel="stylesheet" href="/studio/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/studio/css/animate.css">
+
+    <link rel="stylesheet" href="/studio/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/studio/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/studio/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/studio/css/aos.css">
+
+    <link rel="stylesheet" href="/studio/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/studio/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/studio/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="/studio/css/flaticon.css">
+    <link rel="stylesheet" href="/studio/css/icomoon.css">
+    <link rel="stylesheet" href="/studio/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <style type="text/css">
+        p {
+            margin-bottom: 0px;
+        }
+
+        .ftco-footer {
+            padding: 5px;
+        }
+
+        h1,
+        a {
+            font-family: "Montserrat", Arial, sans-serif;
+        }
+
+        .inputgoi {
+            display: block;
+            width: 100%;
+        }
+
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .blog-entry {
+            margin-bottom: 30px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $(".thietlap").click(function () {
+                if (document.getElementById('myimage').getAttribute("src") == "") {
+                    document.getElementById('myimage').setAttribute("src", this.value);
+
+                }
+                document.getElementById('oldimg').value = this.value;
+            });
+        });
+        $(document).ready(function () {
+            $(".capnhatgoianh").click(function () {
+                var data = this.value.split(",");
+                if (document.getElementById('myimage2').getAttribute("src") == "") {
+                    document.getElementById('myimage2').setAttribute("src", data[1]);
+                }
+
+                document.getElementById('magoi').value = data[0];
+                document.getElementById('tengoi').value = data[2];
+                document.getElementById('gia').value = data[3];
+                document.getElementById('diadiem').value = data[4];
+                document.getElementById('soluong').value = data[5];
+                document.getElementById('thongtinthem').value = data[6];
+
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            $(".datlich").click(function () {
+                document.getElementById('magoianh').value = this.value
+            });
+        });
+
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+
+            var imgtag = document.getElementById("myimage");
+            imgtag.title = selectedFile.name;
+
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+
+            var imgtag = document.getElementById("myimage2");
+            imgtag.title = selectedFile.name;
+
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+    </script>
+</head>
+
+<body>
+    {{{body}}}
+
+
+    <script src="/studio/js/jquery.min.js"></script>
+    <script src="/studio/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/studio/js/popper.min.js"></script>
+    <script src="/studio/js/bootstrap.min.js"></script>
+    <script src="/studio/js/jquery.easing.1.3.js"></script>
+    <script src="/studio/js/jquery.waypoints.min.js"></script>
+    <script src="/studio/js/jquery.stellar.min.js"></script>
+    <script src="/studio/js/owl.carousel.min.js"></script>
+    <script src="/studio/js/jquery.magnific-popup.min.js"></script>
+    <script src="/studio/js/aos.js"></script>
+    <script src="/studio/js/jquery.animateNumber.min.js"></script>
+    <script src="/studio/js/bootstrap-datepicker.js"></script>
+    {{!--
+    <script src="/studio/js/jquery.timepicker.min.js"></script> --}}
+    <script src="/studio/js/scrollax.min.js"></script>
+    <script src="/studio/js/main.js"></script>
+
+</body>
+
+</html>

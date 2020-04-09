@@ -1,0 +1,157 @@
+{{#section 'css'}}
+<style>
+   p {
+      padding: 5px;
+   }
+</style>
+{{/section}}
+<div class="apartment_part">
+   <div class="container">
+      <div class="row justify-content-between align-content-center">
+         <div class="col-md-8 col-lg-7">
+            <div class="section_tittle">
+               <h3> Danh sách các<br>
+                  <b>ĐƠN ĐẶT CHỤP ẢNH</b></h3>
+            </div>
+         </div>
+         {{!--
+            <div class=" col-lg-5">
+                <form action="" method="GET">
+                    <div class="row">
+                        <div class="col-md-8 " style="padding-right: 0px;">
+
+                            <select class="form-control" name="luachon">
+                        <option value="1">ĐÃ NHẬN</option>
+                        <option  value="2">ĐANG XỬ LÝ</option>
+                        <option  value="3">ĐÃ TỪ CHỐI</option>
+                     </select>
+                        </div>
+                        <div class="col-md-4" style="padding-left: 10px;">
+                            <input class="form-control" type="submit" value="Lấy danh sách">
+                        </div>
+
+                    </div>
+                </form>
+            </div> --}}
+      </div>
+      <hr>
+      <h4>DANH SÁCH ĐÃ NHẬN</h4>
+      <div class="row">
+         {{#unless danhan }}<p style="padding-left:20px;">Bạn không có đơn đặt đã nhận</p>{{/unless}} 
+         {{#each danhan}}
+         <div class="col-md-4 col-lg-4 card-studio">
+            <div class="single_appartment_part">
+               <div class="appartment_img">
+                  <img src="{{anhdaidien}}" alt="">
+                  <div class="single_appartment_text">
+                     <h3>{{gia}}</h3>
+                     <p><span class="ti-location-pin"></span> {{diadiem}}</p>
+                  </div>
+               </div>
+               <div class="single_appartment_content">
+                  <a class="love_us"> <span class="ti-heart"></span><span class="ti-heart"></span> </a>
+                  <a href="/xemstudio?id={{id}}">
+                     <p>{{tenStudio}}</p>
+                  </a>
+                  <h4>{{tengoi}}</h4>
+                  <p>{{formatDate ngaydat}}</p>
+                  <ul class="list-unstyled">
+                     <p>Số lượng: {{soluonganh}}</p>
+                     <p>Thông tin: {{thongtinthem}}</p>
+                     <li><button class="genric-btn success">ĐÃ NHẬN</button>
+                     <li>
+                        <form method="GET" action="/xoadondat?kh={{khachhang}}&gc={{goichup}}&nd={{ngaydat}}">
+                           <input type="hidden" name="khachhang" value="{{khachhang}}">
+                           <input type="hidden" name="goichup" value="{{goichup}}">
+                           <input type="hidden" name="ngaydat" value="{{ngaydat}}">
+                           <input type="submit" class="btn genric-btn success" value="XÓA ĐƠN">
+                        </form>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         {{/each}}
+      </div>
+      <hr>
+      <h4>DANH SÁCH ĐANG CHỜ</h4>
+      <div class="row">
+         {{#unless dangcho}}<p style="padding-left:20px;">Bạn không có đơn đặt đang chờ </p>{{/unless}}
+         {{#each dangcho}}
+         <div class="col-md-4 col-lg-4 card-studio">
+            <div class="single_appartment_part">
+               <div class="appartment_img">
+                  <img src="{{anhdaidien}}" alt="">
+                  <div class="single_appartment_text">
+                     <h3>{{gia}}</h3>
+                     <p><span class="ti-location-pin"></span> {{diadiem}}</p>
+                  </div>
+               </div>
+               <div class="single_appartment_content">
+                  <a class="love_us"> <span class="ti-heart"></span><span class="ti-heart"></span> </a>
+                  <a href="/xemstudio?id={{id}}">
+                     <p>{{tenStudio}}</p>
+                  </a>
+                  <h4>{{tengoi}}</h4>
+                  
+                  <ul class="list-unstyled">
+                     <p>Thời gian: {{formatDate ngaydat}}</p>
+                     <p>Số lượng: {{soluonganh}}</p>
+                     <p>Thông tin: {{thongtinthem}}</p>
+                     <li><button class="genric-btn warning">ĐANG XỬ LÝ</button>
+                     <li>
+                        <form method="GET" action="/xoadondat?kh={{khachhang}}&gc={{goichup}}&nd={{ngaydat}}">
+                           <input type="hidden" name="khachhang" value="{{khachhang}}">
+                           <input type="hidden" name="goichup" value="{{goichup}}">
+                           <input type="hidden" name="ngaydat" value="{{ngaydat}}">
+                           <input type="submit" class="btn genric-btn success" value="XÓA ĐƠN">
+                        </form>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         {{/each}}
+      </div>
+      <hr>
+      <h4>DANH SÁCH ĐÃ TỪ CHỐI</h4>
+      <div class="row">
+         {{#unless datuchoi}}<p style="padding-left:20px;">Bạn không có đơn đặt đã từ chối</p>{{/unless}} 
+         {{#each datuchoi}}
+         <div class="col-md-4 col-lg-4 card-studio">
+            <div class="single_appartment_part">
+               <div class="appartment_img">
+                  <img src="{{anhdaidien}}" alt="">
+                  <div class="single_appartment_text">
+                     <h3>{{gia}}</h3>
+                     <p><span class="ti-location-pin"></span> {{diadiem}}</p>
+                  </div>
+               </div>
+               <div class="single_appartment_content">
+                  <a class="love_us"> <span class="ti-heart"></span><span class="ti-heart"></span> </a>
+                  <a href="/xemstudio?id={{id}}">
+                     <p>{{tenStudio}}</p>
+                  </a>
+                  <h4>{{tengoi}}</h4>
+                  <p>{{formatDate ngaydat}}</p>
+                  <ul class="list-unstyled">
+                     <p>Số lượng: {{soluonganh}}</p>
+                     <p>Thông tin: {{thongtinthem}}</p>
+                     <li><button class="genric-btn danger">ĐÃ TỪ CHỐI</button>
+                     <li>
+                        <form method="GET" action="/xoadondat?kh={{khachhang}}&gc={{goichup}}&nd={{ngaydat}}">
+                           <input type="hidden" name="khachhang" value="{{khachhang}}">
+                           <input type="hidden" name="goichup" value="{{goichup}}">
+                           <input type="hidden" name="ngaydat" value="{{ngaydat}}">
+                           <input type="submit" class="btn genric-btn success" value="XÓA ĐƠN">
+                        </form>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         {{/each}}
+      </div>
+
+   </div>
+</div>

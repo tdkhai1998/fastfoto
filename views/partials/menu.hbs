@@ -1,0 +1,71 @@
+<header class="main_menu home_menu" style="background-color: #f2f2f2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="/"> <img style="max-height:50px" src="/img/logo.png" alt="logo"> </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse main-menu-item" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a style="font-size: 16px; font-weight: bold;" class="nav-link" href="/">Trang Chủ<span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            {{#if loai.user}}
+                            <li class="nav-item active">
+                                <a style="font-size: 16px; font-weight: bold;" class="nav-link" href="/dsdon">Danh sách
+                                    đơn<span class="sr-only">(current)</span></a>
+                            </li>
+                            {{/if}}
+                            {{#if loai.studio}}
+                            <li class="nav-item active">
+                                <a style="font-size: 16px; font-weight: bold;" class="nav-link"
+                                    href="/trangchustudio">Studio của bạn<span class="sr-only">(current)</span></a>
+                            </li>
+                            {{/if}}
+                            {{#if loai.adminuser}}
+                            <li class="nav-item active">
+                                <a style="font-size: 16px; font-weight: bold;" class="nav-link"
+                                    href="/quanlitaikhoan">Quản lý các tài khoản</span></a>
+                            </li>
+                            {{/if}}
+                            {{#if loai.adminstudio}}
+                            <li class="nav-item active">
+                                <a style="font-size: 16px; font-weight: bold;" class="nav-link"
+                                    href="/quanlistudio">Quản lý các Studio</a>
+                            </li>
+                            {{/if}}
+                            {{#if dangnhap}}
+                            <li class="nav-item dropdown">
+                                <a style="font-size: 16px; font-weight: bold;" class="nav-link dropdown-toggle" href="#"
+                                    id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {{username}}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {{#if loai.user}}
+                                    <a style="font-size: 16px; font-weight: bold;" class="dropdown-item"
+                                        href="/thongtintaikhoan">Thông tin tài khoản</a>
+                                    {{/if}}
+                                    <a style="font-size: 16px; font-weight: bold;" class="dropdown-item"
+                                        href="/dangxuat">Logout</a>
+                                </div>
+                            </li>
+                            {{else}}
+                            <li class="nav-item">
+                                <a style="font-size: 16px; font-weight: bold;" class="nav-link" href="#myModal"
+                                    data-toggle="modal">Đăng nhập</a>
+                            </li>
+                            {{/if}}
+
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

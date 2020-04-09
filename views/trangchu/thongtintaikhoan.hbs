@@ -1,0 +1,130 @@
+{{#section 'css'}}
+<style>
+  
+.single-input-primary{
+ background-color: #b3b3b3;
+}
+label{
+  font-weight: bolder;
+}
+form{
+ -webkit-box-shadow: 0px 0px 38px -15px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 38px -15px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 38px -15px rgba(0,0,0,0.75);}
+</style>
+{{/section}}
+{{#section 'js'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+  jQuery.validator.addMethod("integer", function(value, element) {
+	return this.optional(element) || /^-?\d+$/.test(value);
+}, "A positive or negative non-decimal number please");
+  $(function () {
+    $('#ngaysinh').datetimepicker({
+      format: 'd/m/Y',
+      timepicker: false,
+      mask:true
+    });
+
+    $('#thongtintaikhoan').validate({
+      rules: {
+        username: {
+          required: true,
+          remote:'/account/is-available'
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        hoten: {
+          required: true
+        },
+        ngaysinh: {
+          required: true
+        },
+        sodienthoai: {
+          required:true,
+          integer:true,
+          minlength:10,
+          maxlength:11
+        }
+      },
+      messages: {
+        username: {
+          required: 'Username không được bỏ trống.',
+          remote:'username đã tồn tại'
+        },
+        email: {
+          required: 'Email không hợp lệ.',
+          email: 'Email không hợp lệ.'
+        },
+        hoten: {
+          required: 'Tên của bạn là gì?',
+        },
+        ngaysinh: {
+          required: 'Ngày sinh không hợp lệ.'
+        },
+        sodienthoai:{
+          required:'Không được bỏ trống.',
+          minlength: 'Phải nhiều hơn 10 ký tự'
+        }
+      },
+      errorElement: 'small',
+      errorClass: 'help-block text-danger',
+      highlight: function (e) {
+        $(e).removeClass('is-valid').addClass('is-invalid');
+      },
+      unhighlight: function (e) {
+        $(e).removeClass('is-invalid').addClass('is-valid');
+      }
+    });
+  })
+</script>
+{{/section}}
+
+
+
+<!--::apartment_part end::-->
+<div class="apartment_part">
+  <div class="container">
+    <h1 >Xin chào ! {{khach.hoten}}<br>
+                <b>Username của bạn {{taikhoan.username}}</b></h1>
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <form  action="" id="thongtintaikhoan" method="POST" style="padding: 15px; font-size: 15px;">
+          <div class="mt-10">
+            <label for="hoten">Họ Tên</label>
+            <input id="hoten" type="text" name="hoten"  class="single-input-primary" value='{{khach.hoten}}'>
+          </div>
+          <div class="mt-10">
+            <label for="email">Email</label>
+            <input id="email" type="text"  name="email"  class="single-input-primary" value='{{khach.email}}'>
+          </div>
+          <div class="mt-10">
+            <label for="facebook">Facebook</label>
+            <input id="facebook" type="text"  name="facebook"  class="single-input-primary" value='{{khach.facebook}}'>
+          </div>
+          <div class="mt-10">
+            <label for="ngaysinh">Ngày sinh</label>
+            <input id="ngaysinh" type="text" name="ngaysinh"  class="single-input-primary" value='{{khach.ngaysinh}}'>
+          </div>
+          <div class="mt-10">
+            <label for="sodienthoai">Số điện thoại</label>
+            <input id="sodienthoai" type="text" name="sodienthoai"  class="single-input-primary"value='{{khach.sodienthoai}}' >
+          </div>
+          <div class="mt-10">
+            <label for="username">Username</label>
+            <input name="username" id="username" type="text"  class="single-input-primary" value='{{taikhoan.username}}'>
+          </div>
+          <div class="mt-10">
+            <input type="Submit" class="genric-btn success" style="margin: 20px 0px;" value="LƯU LẠI">
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+</div>
